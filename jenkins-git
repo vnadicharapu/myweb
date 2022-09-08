@@ -1,9 +1,12 @@
 pipeline{
     agent any
+    tools {
+        maven 'apache-maven-1.0.1' 
+    }
     stages{
-        stage("git checkout"){
+        stage("maven-build"){
             steps{
-                git credentialsId: 'github', url: 'https://github.com/vnadicharapu/myweb'
+                sh "mvn clean package"
             }
         }
     }
